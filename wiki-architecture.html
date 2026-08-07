@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block - Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #bg-canvas { z-index: -2 !important; pointer-events: none !important; }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="logo">
+            <svg viewBox="0 0 100 100" class="logo-img-small">
+                <g fill="#ffffff">
+                    <rect x="25" y="20" width="15" height="60" />
+                    <polygon points="45,20 70,20 75,32.5 70,45 45,45" />
+                    <polygon points="45,55 75,55 80,67.5 75,80 45,80" />
+                </g>
+            </svg>
+            <span class="logo-text">BLOCK</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html#architecture">Architecture</a>
+            <a href="index.html#showcase">Showcase</a>
+            <a href="index.html#terminal">Execution</a>
+            <a href="wiki.html" class="btn-glow">Documentation</a>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+        <!-- Sidebar -->
+        <aside class="wiki-sidebar">
+            <h4>Documentation</h4>
+            <ul>
+                <li><a href="wiki.html">1. Introduction</a></li>
+                <li><a href="wiki-install.html">2. Installation</a></li>
+                <li><a href="wiki-syntax.html">3. Native Syntax</a></li>
+                <li><a href="wiki-polyglot.html">4. Polyglot Blocks</a></li>
+                <li><a href="wiki-architecture.html" class="active">5. Architecture</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="wiki-content">
+            <h1>Engine Architecture</h1>
+            <p>To truly understand how Block achieves polyglot orchestration without a virtual machine, we need to dive under the hood. Block is built around a high-performance C# Orchestrator.</p>
+            
+            <h2>The C# Orchestrator</h2>
+            <p>At the core of the Block engine is the Orchestrator, written in C# (.NET 8.0). When you execute a <code>.blk</code> script, the Orchestrator performs the following lifecycle:</p>
+            <ol>
+                <li><strong>Lexical Analysis:</strong> The <code>.blk</code> file is parsed into an Abstract Syntax Tree (AST). It separates native Block syntax from the embedded polyglot blocks (<code>&lt;py&gt;</code>, <code>&lt;js&gt;</code>).</li>
+                <li><strong>State Initialization:</strong> A localized <code>.state.json</code> file is created in memory (or a secure temp directory) to hold all native variables.</li>
+                <li><strong>Subprocess Spawning:</strong> When the AST evaluator encounters a polyglot block, it spawns a native subprocess (e.g., <code>python.exe</code> or <code>node.exe</code>).</li>
+                <li><strong>Code Injection & IPC:</strong> The Orchestrator dynamically wraps your code with an injection header and footer. The header loads variables from the state file, and the footer writes the mutated variables back to the state file before the subprocess exits.</li>
+            </ol>
+            
+            <h2>3-Stage Masking Security</h2>
+            <p>Because Block executes native code and passes variables across process boundaries, security is a top priority. Block employs a <strong>3-Stage Masking</strong> system to prevent injection attacks during state serialization:</p>
+            <ul>
+                <li><strong>Stage 1 - Regex Validation:</strong> Variable names are strictly validated against a regex pattern (<code>^[a-zA-Z_][a-zA-Z0-9_]*$</code>) to ensure they cannot contain execution payloads.</li>
+                <li><strong>Stage 2 - Type Assertion:</strong> The Orchestrator enforces strict JSON-type assertions during cross-boundary transit. Only Primitives (Strings, Numbers, Booleans) and basic Arrays/Objects are passed.</li>
+                <li><strong>Stage 3 - Subprocess Isolation:</strong> Each polyglot block is executed in an ephemeral, isolated subprocess. Code execution errors immediately kill the subprocess without crashing the Orchestrator.</li>
+            </ul>
+
+            <h2>Performance Considerations</h2>
+            <p>Because Block spawns subprocesses for polyglot blocks, there is a slight overhead compared to native C++ or Rust execution. However, this overhead (typically ~15ms to ~45ms per block) is negligible for most orchestration scripts, CI/CD pipelines, and data-glue applications.</p>
+
+            <div class="wiki-nav-buttons">
+                <a href="wiki-polyglot.html">&larr; Prev: Polyglot Blocks</a>
+                <div></div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <svg viewBox="0 0 100 100" width="40" height="40">
+                <g fill="#ffffff">
+                    <rect x="25" y="20" width="15" height="60" />
+                    <polygon points="45,20 70,20 75,32.5 70,45 45,45" />
+                    <polygon points="45,55 75,55 80,67.5 75,80 45,80" />
+                </g>
+            </svg>
+        </div>
+        <p>&copy; 2026 Block Engine. Native execution, redefined.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

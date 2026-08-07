@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block - Introduction</title>
+    <title>Block - Installation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Mono&display=swap" rel="stylesheet">
@@ -39,8 +39,8 @@
         <aside class="wiki-sidebar">
             <h4>Documentation</h4>
             <ul>
-                <li><a href="wiki.html" class="active">1. Introduction</a></li>
-                <li><a href="wiki-install.html">2. Installation</a></li>
+                <li><a href="wiki.html">1. Introduction</a></li>
+                <li><a href="wiki-install.html" class="active">2. Installation</a></li>
                 <li><a href="wiki-syntax.html">3. Native Syntax</a></li>
                 <li><a href="wiki-polyglot.html">4. Polyglot Blocks</a></li>
                 <li><a href="wiki-architecture.html">5. Architecture</a></li>
@@ -49,24 +49,42 @@
 
         <!-- Main Content -->
         <main class="wiki-content">
-            <h1>Introduction</h1>
-            <p>Welcome to the official documentation for <strong>Block</strong>, a revolutionary interpreted programming language designed specifically for seamless <em>polyglot orchestration</em>.</p>
+            <h1>Installation & Quick Start</h1>
+            <p>Setting up the Block environment on your machine is incredibly straightforward thanks to our dedicated Windows Installer. It automatically sets up the Orchestrator engine and provisions all the necessary runtime environments for polyglot execution.</p>
             
-            <h2>The Core Philosophy</h2>
-            <p>Modern software development often requires mixing multiple languages to achieve the best results. For example, you might want to use <strong>Python</strong> for its rich data science libraries, <strong>JavaScript</strong> for its asynchronous web capabilities, and <strong>C++</strong> for high-performance number crunching.</p>
-            <p>Traditionally, bridging these languages requires complex architectures such as microservices, REST APIs, or cumbersome inter-process communication (IPC) protocols. This introduces latency, serialization overhead, and significant architectural complexity.</p>
-            
-            <h3>The Block Solution</h3>
-            <p>Block solves this problem by allowing you to mix multiple programming languages within a <strong>single file</strong>. The underlying C# Orchestrator automatically handles state sharing, memory synchronization, and secure data passing between different language execution contexts.</p>
+            <h2>System Requirements</h2>
             <ul>
-                <li><strong>Single File Polyglot</strong>: Write Python, JavaScript, and PHP in the same <code>.blk</code> script.</li>
-                <li><strong>Automatic State Sharing</strong>: Variables mutated in a Python block are instantly accessible in the subsequent JavaScript block.</li>
-                <li><strong>No Virtual Machine</strong>: Block doesn't emulate execution. It routes AST nodes to native interpreters (like <code>python.exe</code> or <code>node.exe</code>), ensuring 100% standard library compatibility and zero VM overhead.</li>
+                <li><strong>OS:</strong> Windows 10 or Windows 11 (64-bit)</li>
+                <li><strong>Storage:</strong> 250MB free space (for the orchestrator and bundled runtimes)</li>
+                <li><strong>Node.js:</strong> v16.0.0 or newer (Required for JavaScript block orchestration)</li>
             </ul>
+            
+            <h2>Installing via the Official Installer</h2>
+            <p>We provide a standalone executable installer that registers the <code>block</code> command globally.</p>
+            <ol>
+                <li>Download the installer from the homepage: <a href="BlockInstaller.exe" style="color:#fff; text-decoration:underline;">BlockInstaller.exe</a></li>
+                <li>Run the executable as an Administrator.</li>
+                <li>The installer will automatically download the required standard runtimes (such as Python 3.10 and PHP 8.1) and link them to the Orchestrator.</li>
+                <li>Once finished, restart your terminal to reload the system <code>PATH</code>.</li>
+            </ol>
+
+            <h2>Verifying the Installation</h2>
+            <p>To verify that Block is installed correctly, open a new Command Prompt or PowerShell and type:</p>
+            <pre><code>block --version</code></pre>
+            <p>You should see an output similar to <code>Block Orchestrator v1.0.0</code>.</p>
+
+            <h2>Writing your first Block script</h2>
+            <p>Create a new file named <code>hello.blk</code> and add the following native syntax:</p>
+            <pre><code>print("Hello, Polyglot World!")</code></pre>
+            
+            <p>Run the script using the CLI:</p>
+            <pre><code>block run hello.blk</code></pre>
+            
+            <p>In the next section, we will explore the syntax of the native Block language.</p>
 
             <div class="wiki-nav-buttons">
-                <div></div>
-                <a href="wiki-install.html">Next: Installation &rarr;</a>
+                <a href="wiki.html">&larr; Prev: Introduction</a>
+                <a href="wiki-syntax.html">Next: Native Syntax &rarr;</a>
             </div>
         </main>
     </div>

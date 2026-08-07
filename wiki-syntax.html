@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block - Introduction</title>
+    <title>Block - Native Syntax</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Mono&display=swap" rel="stylesheet">
@@ -39,9 +39,9 @@
         <aside class="wiki-sidebar">
             <h4>Documentation</h4>
             <ul>
-                <li><a href="wiki.html" class="active">1. Introduction</a></li>
+                <li><a href="wiki.html">1. Introduction</a></li>
                 <li><a href="wiki-install.html">2. Installation</a></li>
-                <li><a href="wiki-syntax.html">3. Native Syntax</a></li>
+                <li><a href="wiki-syntax.html" class="active">3. Native Syntax</a></li>
                 <li><a href="wiki-polyglot.html">4. Polyglot Blocks</a></li>
                 <li><a href="wiki-architecture.html">5. Architecture</a></li>
             </ul>
@@ -49,24 +49,54 @@
 
         <!-- Main Content -->
         <main class="wiki-content">
-            <h1>Introduction</h1>
-            <p>Welcome to the official documentation for <strong>Block</strong>, a revolutionary interpreted programming language designed specifically for seamless <em>polyglot orchestration</em>.</p>
+            <h1>Native Syntax</h1>
+            <p>The native syntax of Block is designed to act as the "glue" between your polyglot blocks. It intentionally keeps logic minimal, focusing on orchestration, variable declarations, and simple control flow.</p>
             
-            <h2>The Core Philosophy</h2>
-            <p>Modern software development often requires mixing multiple languages to achieve the best results. For example, you might want to use <strong>Python</strong> for its rich data science libraries, <strong>JavaScript</strong> for its asynchronous web capabilities, and <strong>C++</strong> for high-performance number crunching.</p>
-            <p>Traditionally, bridging these languages requires complex architectures such as microservices, REST APIs, or cumbersome inter-process communication (IPC) protocols. This introduces latency, serialization overhead, and significant architectural complexity.</p>
+            <h2>The "No Braces, No Indentation" Philosophy</h2>
+            <p>Unlike Python, Block does not use strict indentation. Unlike C-based languages, it does not use curly braces <code>{}</code>. Instead, Block uses a unique keyword termination system. Every control structure is opened with a colon <code>:</code> and explicitly closed with the keyword <code>block</code>.</p>
             
-            <h3>The Block Solution</h3>
-            <p>Block solves this problem by allowing you to mix multiple programming languages within a <strong>single file</strong>. The underlying C# Orchestrator automatically handles state sharing, memory synchronization, and secure data passing between different language execution contexts.</p>
-            <ul>
-                <li><strong>Single File Polyglot</strong>: Write Python, JavaScript, and PHP in the same <code>.blk</code> script.</li>
-                <li><strong>Automatic State Sharing</strong>: Variables mutated in a Python block are instantly accessible in the subsequent JavaScript block.</li>
-                <li><strong>No Virtual Machine</strong>: Block doesn't emulate execution. It routes AST nodes to native interpreters (like <code>python.exe</code> or <code>node.exe</code>), ensuring 100% standard library compatibility and zero VM overhead.</li>
-            </ul>
+            <h2>Variable Declaration</h2>
+            <p>Variables are implicitly typed and do not require keywords like <code>var</code> or <code>let</code>.</p>
+            <pre><code>name = "Alice"
+age = 28
+score = 99.5
+
+print("User:", name, "Age:", age)
+</code></pre>
+
+            <h2>Control Structures</h2>
+            <h3>If / Else</h3>
+            <p>Conditional branching uses standard <code>if</code>, <code>elif</code>, and <code>else</code>, terminating with <code>block</code>.</p>
+            <pre><code>if age >= 18:
+    print("Status: Adult")
+elif age > 12:
+    print("Status: Teenager")
+else:
+    print("Status: Child")
+block</code></pre>
+
+            <h3>While Loops</h3>
+            <pre><code>counter = 0
+while counter < 5:
+    print("Count is:", counter)
+    counter = counter + 1
+block</code></pre>
+
+            <h2>Functions</h2>
+            <p>Native functions can be defined using the <code>func</code> keyword. They are useful for organizing basic orchestration logic.</p>
+            <pre><code>func calculateTax(amount):
+    tax = amount * 0.05
+    return amount + tax
+block
+
+total = calculateTax(100)
+print("Total after tax:", total)</code></pre>
+
+            <p>While native syntax handles the structure, the real power of Block comes from embedding other languages. Let's look at Polyglot Blocks.</p>
 
             <div class="wiki-nav-buttons">
-                <div></div>
-                <a href="wiki-install.html">Next: Installation &rarr;</a>
+                <a href="wiki-install.html">&larr; Prev: Installation</a>
+                <a href="wiki-polyglot.html">Next: Polyglot Blocks &rarr;</a>
             </div>
         </main>
     </div>

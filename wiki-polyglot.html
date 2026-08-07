@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block - Polyglot Blocks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #bg-canvas { z-index: -2 !important; pointer-events: none !important; }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="logo">
+            <svg viewBox="0 0 100 100" class="logo-img-small">
+                <g fill="#ffffff">
+                    <rect x="25" y="20" width="15" height="60" />
+                    <polygon points="45,20 70,20 75,32.5 70,45 45,45" />
+                    <polygon points="45,55 75,55 80,67.5 75,80 45,80" />
+                </g>
+            </svg>
+            <span class="logo-text">BLOCK</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html#architecture">Architecture</a>
+            <a href="index.html#showcase">Showcase</a>
+            <a href="index.html#terminal">Execution</a>
+            <a href="wiki.html" class="btn-glow">Documentation</a>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+        <!-- Sidebar -->
+        <aside class="wiki-sidebar">
+            <h4>Documentation</h4>
+            <ul>
+                <li><a href="wiki.html">1. Introduction</a></li>
+                <li><a href="wiki-install.html">2. Installation</a></li>
+                <li><a href="wiki-syntax.html">3. Native Syntax</a></li>
+                <li><a href="wiki-polyglot.html" class="active">4. Polyglot Blocks</a></li>
+                <li><a href="wiki-architecture.html">5. Architecture</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="wiki-content">
+            <h1>Polyglot Blocks</h1>
+            <p>The defining feature of the Block programming language is its ability to embed other programming languages seamlessly. This is done using <strong>XML-style tags</strong>.</p>
+            
+            <h2>Supported Languages</h2>
+            <p>The Orchestrator currently ships with built-in support for the following languages via tags:</p>
+            <ul>
+                <li><code>&lt;py&gt; ... &lt;/py&gt;</code> - Python (requires <code>python</code> in PATH)
+                <li><code>&lt;js&gt; ... &lt;/js&gt;</code> - JavaScript (requires <code>node</code> in PATH)
+                <li><code>&lt;php&gt; ... &lt;/php&gt;</code> - PHP</li>
+                <li><code>&lt;cpp&gt; ... &lt;/cpp&gt;</code> - C++ (requires GCC / G++)
+                <li><code>&lt;go&gt; ... &lt;/go&gt;</code> - Go</li>
+            </ul>
+            
+            <h2>Automatic State Sharing</h2>
+            <p>When execution enters a language block, the Orchestrator automatically injects all native variables into that language's execution context. When the block finishes, any modifications made to those variables are captured and synced back to the global state.</p>
+            
+            <h3>Example: Python and JavaScript</h3>
+            <pre><code>counter = 100
+
+&lt;py&gt;
+# This is a Python block
+import math
+counter = counter + math.floor(5.5)
+print(f"Python updated counter to: {counter}")
+&lt;/py&gt;
+
+&lt;js&gt;
+// This is a JavaScript block
+// 'counter' starts at 105 based on the Python execution
+counter = counter * 2;
+console.log(`JavaScript updated counter to: ${counter}`);
+&lt;/js&gt;
+
+print("Final result in Block:", counter)
+</code></pre>
+
+            <h2>Syntax Rules Inside Blocks</h2>
+            <p>Inside a language block, you are writing <strong>native code</strong> for that specific language. You must obey all rules of that language.</p>
+            <ul>
+                <li>In a <code>&lt;py&gt;</code> block, you must respect Python's indentation rules.</li>
+                <li>In a <code>&lt;js&gt;</code> block, you should use JavaScript syntax (e.g., semicolons, <code>var/let/const</code> for local variables).</li>
+            </ul>
+            <p><em>Note: If you declare a new variable inside a block using a local keyword (like <code>let temp = 1;</code> in JS), it will <strong>not</strong> be synced back to the global Block state. Only variables initialized in the native Block scope, or explicitly exported, are tracked.</em></p>
+
+            <div class="wiki-nav-buttons">
+                <a href="wiki-syntax.html">&larr; Prev: Native Syntax</a>
+                <a href="wiki-architecture.html">Next: Architecture &rarr;</a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <svg viewBox="0 0 100 100" width="40" height="40">
+                <g fill="#ffffff">
+                    <rect x="25" y="20" width="15" height="60" />
+                    <polygon points="45,20 70,20 75,32.5 70,45 45,45" />
+                    <polygon points="45,55 75,55 80,67.5 75,80 45,80" />
+                </g>
+            </svg>
+        </div>
+        <p>&copy; 2026 Block Engine. Native execution, redefined.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
