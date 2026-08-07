@@ -11,29 +11,33 @@
     <style>
         .wiki-container {
             max-width: 800px;
-            margin: 120px auto 50px;
+            margin: 50px auto 50px;
             padding: 3rem;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 4px;
             backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
         }
-        .wiki-container h1 { color: var(--accent-cyan); margin-bottom: 2rem; font-size: 2.5rem; }
-        .wiki-container h2 { color: var(--accent-purple); margin: 2.5rem 0 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
-        .wiki-container h3 { color: var(--text-main); margin: 1.5rem 0 1rem; }
-        .wiki-container p, .wiki-container ul { margin-bottom: 1.2rem; color: #ddd; }
+        .wiki-container h1 { color: #ffffff; margin-bottom: 2rem; font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .wiki-container h2 { color: #ffffff; margin: 2.5rem 0 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; font-weight: 700; }
+        .wiki-container h3 { color: #cccccc; margin: 1.5rem 0 1rem; }
+        .wiki-container p, .wiki-container ul { margin-bottom: 1.2rem; color: var(--text-secondary); line-height: 1.8; }
         .wiki-container li { margin-bottom: 0.5rem; margin-left: 1.5rem; }
         .wiki-container pre {
-            background: #111;
+            background: #000000;
             padding: 1.5rem;
-            border-radius: 6px;
+            border-radius: 4px;
             border: 1px solid var(--border-color);
             overflow-x: auto;
             margin: 1.5rem 0;
-            font-family: 'Space Mono', monospace;
-            color: #ce9178;
+            font-family: var(--font-mono);
+            color: #ffffff;
         }
-        .wiki-container code { font-family: 'Space Mono', monospace; background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .wiki-container code { font-family: var(--font-mono); background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 4px; }
+        /* Fix the wall block issue */
+        #bg-canvas { z-index: -2 !important; pointer-events: none !important; }
     </style>
 </head>
 <body>
@@ -41,14 +45,21 @@
 
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="Block Logo" class="logo-img">
-            <span>BLOCK</span>
+            <!-- Using the inline SVG for small logo -->
+            <svg viewBox="0 0 100 100" class="logo-img-small">
+                <g fill="#ffffff">
+                    <rect x="25" y="20" width="15" height="60" />
+                    <polygon points="45,20 70,20 75,32.5 70,45 45,45" />
+                    <polygon points="45,55 75,55 80,67.5 75,80 45,80" />
+                </g>
+            </svg>
+            <span class="logo-text">BLOCK</span>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="index.html#features">Features</a>
-            <a href="index.html#install">Install</a>
-            <a href="wiki.html" class="btn-glow">Read Wiki</a>
+            <a href="index.html#architecture">Architecture</a>
+            <a href="index.html#showcase">Showcase</a>
+            <a href="index.html#terminal">Execution</a>
+            <a href="wiki.html" class="btn-glow">Documentation</a>
         </div>
     </nav>
 
@@ -118,7 +129,16 @@ block</pre>
     </main>
 
     <footer>
-        <p>&copy; 2026 Block Language. All rights reserved.</p>
+        <div class="footer-logo">
+            <svg viewBox="0 0 100 100" width="40" height="40">
+                <g fill="#ffffff">
+                    <rect x="25" y="20" width="15" height="60" />
+                    <polygon points="45,20 70,20 75,32.5 70,45 45,45" />
+                    <polygon points="45,55 75,55 80,67.5 75,80 45,80" />
+                </g>
+            </svg>
+        </div>
+        <p>&copy; 2026 Block Engine. Native execution, redefined.</p>
     </footer>
     <script src="script.js"></script>
 </body>

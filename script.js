@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- 3. Scroll Timeline --- */
     const scrollLine = document.getElementById('scroll-line');
     window.addEventListener('scroll', () => {
+        if (!scrollLine) return;
         const scrollPx = document.documentElement.scrollTop;
         const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = `${(scrollPx / winHeightPx) * 100}%`;
