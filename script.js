@@ -216,4 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(drawStars);
     }
     drawStars();
+
+    /* --- 8. Custom Geometric Cursor --- */
+    const cursor = document.createElement('div');
+    cursor.id = 'custom-cursor';
+    document.body.appendChild(cursor);
+
+    window.addEventListener('mousemove', (e) => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    });
 });
