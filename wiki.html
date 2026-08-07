@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block - Official Wiki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .wiki-container {
+            max-width: 800px;
+            margin: 120px auto 50px;
+            padding: 3rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        .wiki-container h1 { color: var(--accent-cyan); margin-bottom: 2rem; font-size: 2.5rem; }
+        .wiki-container h2 { color: var(--accent-purple); margin: 2.5rem 0 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        .wiki-container h3 { color: var(--text-main); margin: 1.5rem 0 1rem; }
+        .wiki-container p, .wiki-container ul { margin-bottom: 1.2rem; color: #ddd; }
+        .wiki-container li { margin-bottom: 0.5rem; margin-left: 1.5rem; }
+        .wiki-container pre {
+            background: #111;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Space Mono', monospace;
+            color: #ce9178;
+        }
+        .wiki-container code { font-family: 'Space Mono', monospace; background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Block Logo" class="logo-img">
+            <span>BLOCK</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#install">Install</a>
+            <a href="wiki.html" class="btn-glow">Read Wiki</a>
+        </div>
+    </nav>
+
+    <main class="wiki-container">
+        <h1>Block 語言官方文件</h1>
+        <p>Block 是一個專注於「多語言混合開發」的直譯式程式語言。它允許你在同一個專案、甚至同一個檔案內混合使用 Python、JavaScript、C++ 等多種語言，並在底層自動共享變數狀態。</p>
+
+        <h2>1. 核心設計理念</h2>
+        <p>現代開發常遇到需要混用多種語言的場景，通常需要透過 API 或子行程來溝通，導致專案架構變得複雜。</p>
+        <p>Block 透過底層的狀態共享機制解決了這個問題。在 <code>.blk</code> 檔案中，不同語言的區塊可以直接存取並修改同一個變數，省去了跨語言通訊的開發與序列化成本。</p>
+
+        <h2>2. 環境安裝與執行</h2>
+        <h3>環境需求</h3>
+        <ul>
+            <li>Node.js (執行 Block 核心所需的環境)</li>
+            <li>若要使用特定語言的區塊，需具備對應環境（例如本機需安裝 Python 3, Go, GCC 等）</li>
+        </ul>
+        <h3>執行腳本</h3>
+        <pre>node ./bin/block.js run script.blk</pre>
+
+        <h2>3. Block 原生語法</h2>
+        <p>原生 Block 負責基礎的邏輯控制與變數指派。它的語法設計極度精簡，不強制要求縮排，也不使用大括號 <code>{}</code>，而是統一使用 <code>block</code> 作為控制結構的結束點。</p>
+        
+        <h3>變數宣告與輸出</h3>
+        <pre>age = 25
+name = "Alice"
+print("Name:", name, "Age:", age)</pre>
+
+        <h3>控制結構</h3>
+        <pre>if age >= 18:
+    print("Adult")
+elif age > 12:
+    print("Teen")
+else:
+    print("Child")
+block</pre>
+
+        <h2>4. 多語言區塊 (Polyglot Blocks)</h2>
+        <p>你可以使用類似 XML 的標籤來嵌入其他程式語言。變數會在進入區塊前自動注入，並在區塊結束後將更新的值傳回原生 Block。</p>
+        <p>目前支援的語言標籤包含：<code>&lt;py&gt;</code>、<code>&lt;js&gt;</code>、<code>&lt;cpp&gt;</code>、<code>&lt;go&gt;</code>、<code>&lt;java&gt;</code>。</p>
+        
+        <h3>範例：跨語言變數共享</h3>
+        <pre>x = 100
+
+&lt;py&gt;
+# 在 Python 區塊中，可以直接讀取與修改 x
+import math
+x = x + math.floor(5.5)
+print("Python 處理後:", x)
+&lt;/py&gt;
+
+&lt;js&gt;
+// 接著進入 JS 區塊
+x = x * 2;
+console.log("JS 處理後:", x);
+&lt;/js&gt;
+
+print("最終結果:", x)
+block</pre>
+
+        <h2>5. 錯誤處理與安全機制</h2>
+        <ul>
+            <li><strong>狀態檔案通訊</strong>：底層使用 <code>.state.json</code> 作為跨進程通訊媒介。</li>
+            <li><strong>變數名稱過濾</strong>：跨語言傳遞前，引擎會以正規表達式驗證變數名稱，阻擋惡意指令碼注入。</li>
+            <li><strong>終端機錯誤提示</strong>：當語法或執行期發生錯誤時，Block 會在終端機印出高反差的 BSOD 錯誤提示方塊，標明錯誤發生的語言區塊。</li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Block Language. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
