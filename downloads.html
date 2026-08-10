@@ -6,15 +6,18 @@
     <title>Downloads - Block Engine</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .dl-section { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding: 40px; }
-        .dl-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; width: 300px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .dl-section { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding: 40px; position: relative; z-index: 10; }
+        .dl-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; width: 300px; text-align: center; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
         .dl-card h3 { color: #fff; margin-bottom: 10px; }
         .dl-card p { color: #aaa; margin-bottom: 20px; font-size: 0.9em; }
-        .dl-card a { display: inline-block; padding: 10px 20px; background: #fff; color: #000; text-decoration: none; border-radius: 6px; font-weight: bold; transition: all 0.2s; }
+        .dl-card a { display: inline-block; padding: 10px 20px; background: #fff; color: #000; text-decoration: none; border-radius: 6px; font-weight: bold; transition: all 0.2s; position: relative; z-index: 11; }
         .dl-card a:hover { background: #ccc; }
     </style>
 </head>
 <body>
+    <!-- 3D Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+    
     <nav class="navbar">
         <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
             <svg viewBox="0 0 100 100" class="logo-img-small">
@@ -54,5 +57,7 @@
             </div>
         </div>
     </main>
+    
+    <script src="script.js"></script>
 </body>
 </html>
