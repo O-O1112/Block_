@@ -60,15 +60,15 @@
                 Real native execution. Python, JavaScript, and PHP compiled and orchestrated by C# in a single file.
             </p>
             <div class="cta-group">
-                <a href="BlockInstaller.exe" download class="btn-primary">Download Installer (Windows)</a>
+                <a href="downloads.html" class="btn-primary">Download Hub</a>
                 <a href="#architecture" class="btn-secondary">Explore the Engine</a>
             </div>
         </header>
 
         <!-- Genuine Architecture Section -->
         <section id="architecture" class="architecture section-padding">
-            <h2 class="section-title reveal">True Native Architecture</h2>
-            <p class="section-desc reveal">We don't use heavy VMs. Block parses your script via a high-performance C# Orchestrator, dynamically spawning isolated subprocesses (Node.js, Python, PHP) and routing standard I/O for native execution speeds.</p>
+            <h2 class="section-title reveal">Zero I/O Architecture</h2>
+            <p class="section-desc reveal">Block 2.0 eliminates disk I/O bottlenecks. It parses your script via a high-performance C# Orchestrator, dynamically spawning isolated subprocesses and passing state securely through purely in-memory STDIN/STDOUT pipelines.</p>
             
             <div class="bento-grid">
                 <div class="bento-card tilt-card reveal">
@@ -89,21 +89,21 @@
                             </g>
                         </svg>
                     </div>
-                    <h3>C# Orchestrator</h3>
-                    <p>The core engine (`block.exe`) is written in C#. It acts as a lightning-fast router, parsing the custom `.blk` syntax, mapping languages to their native interpreters, and managing child process lifecycles.</p>
+                    <h3>Smart Block Merging</h3>
+                    <p>The core engine (`block.exe`) intelligently merges contiguous blocks of the same language (e.g., multiple &lt;py&gt; blocks) before execution, eliminating unnecessary process creation overhead and maximizing performance.</p>
                 </div>
                 <div class="bento-card tilt-card reveal">
                     <div class="bento-icon">
-                        <!-- 3-Stage Security Geometric Icon -->
+                        <!-- Remote Execution Geometric Icon -->
                         <svg viewBox="0 0 100 100" width="40" height="40">
                             <g fill="#ffffff">
-                                <polygon points="20,20 80,20 80,50 50,90 20,50" />
-                                <polygon points="35,35 65,35 65,50 50,70 35,50" fill="#000000" />
+                                <path d="M20 30 L50 10 L80 30 L80 70 L50 90 L20 70 Z" />
+                                <circle cx="50" cy="50" r="15" fill="#000000" />
                             </g>
                         </svg>
                     </div>
-                    <h3>3-Stage Security Masking</h3>
-                    <p>Security is not an afterthought. Block uses a strict 3-stage string masking and variable name sanitization pipeline to guarantee zero cross-language injection vulnerabilities during runtime.</p>
+                    <h3>Remote API & Acode Support</h3>
+                    <p>Run `block serve 8080` to turn your PC into a high-speed execution cloud. Write code on your Android device using our custom Acode plugin and execute it seamlessly on your desktop via HTTP API.</p>
                 </div>
                 <div class="bento-card tilt-card reveal">
                     <div class="bento-icon">
