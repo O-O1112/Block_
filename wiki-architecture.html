@@ -53,13 +53,13 @@
             <h1>Engine Architecture</h1>
             <p>To truly understand how Block achieves polyglot orchestration without a virtual machine, we need to dive under the hood. Block is built around a high-performance C# Orchestrator.</p>
             
-            <h2>The C# Orchestrator</h2>
-            <p>At the core of the Block engine is the Orchestrator, written in C# (.NET 8.0). When you execute a <code>.blk</code> script, the Orchestrator performs the following lifecycle:</p>
+            <h2>The C# Orchestrator & Zero-IO Architecture</h2>
+            <p>At the core of the Block engine is the Orchestrator, written in high-performance C# (.NET). When you execute a script, the Orchestrator performs the following lifecycle:</p>
             <ol>
-                <li><strong>Lexical Analysis:</strong> The <code>.blk</code> file is parsed into an Abstract Syntax Tree (AST). It separates native Block syntax from the embedded polyglot blocks (<code>&lt;py&gt;</code>, <code>&lt;js&gt;</code>).</li>
-                <li><strong>State Initialization:</strong> A localized <code>.state.json</code> file is created in memory (or a secure temp directory) to hold all native variables.</li>
-                <li><strong>Subprocess Spawning:</strong> When the AST evaluator encounters a polyglot block, it spawns a native subprocess (e.g., <code>python.exe</code> or <code>node.exe</code>).</li>
-                <li><strong>Code Injection & IPC:</strong> The Orchestrator dynamically wraps your code with an injection header and footer. The header loads variables from the state file, and the footer writes the mutated variables back to the state file before the subprocess exits.</li>
+                <li><strong>Lexical Analysis & AST Parsing:</strong> The script is parsed into an Abstract Syntax Tree (AST), separating native Block syntax from embedded polyglot blocks (e.g., <code>&lt;python&gt;</code>, <code>&lt;js&gt;</code>, <code>&lt;rust&gt;</code>).</li>
+                <li><strong>Zero-IO Scope Injection:</strong> Unlike legacy file-based IPC, Block v2.0 utilizes direct global scope variable injection. Variables are serialized into standard I/O streams and injected straight into global execution scopes (e.g., <code>globalThis</code> or <code>globals()</code>) without reading/writing disk files.</li>
+                <li><strong>Subprocess Spawning:</strong> When the AST evaluator encounters a polyglot block, it spawns a native subprocess (e.g., <code>python.exe</code>, <code>node.exe</code>, or <code>rustc</code>).</li>
+                <li><strong>Stream Pipeline & Auto-Install:</strong> In Block+, if a required runtime environment is missing, the Orchestrator automatically invokes Winget to install it in the background. State is synced back upon process termination.</li>
             </ol>
             
             <h2>3-Stage Masking Security</h2>
@@ -71,7 +71,7 @@
             </ul>
 
             <h2>Performance Considerations</h2>
-            <p>Because Block spawns subprocesses for polyglot blocks, there is a slight overhead compared to native C++ or Rust execution. However, this overhead (typically ~15ms to ~45ms per block) is negligible for most orchestration scripts, CI/CD pipelines, and data-glue applications.</p>
+            <p>With the Zero-IO Direct Scope Injection architecture, context-switching overhead is reduced to near-zero (~1ms to ~5ms), making polyglot block execution blazing fast and suitable for real-time web servers, automation, and microservices.</p>
 
             <div class="wiki-nav-buttons">
                 <a href="wiki-polyglot.html">&larr; Prev: Polyglot Blocks</a>

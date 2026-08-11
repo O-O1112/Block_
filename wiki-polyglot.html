@@ -53,15 +53,27 @@
             <h1>Polyglot Blocks</h1>
             <p>The defining feature of the Block programming language is its ability to embed other programming languages seamlessly. This is done using <strong>XML-style tags</strong>.</p>
             
-            <h2>Supported Languages</h2>
-            <p>The Orchestrator currently ships with built-in support for the following languages via tags:</p>
+            <h2>Supported Languages & Runtimes</h2>
+            <p>Depending on your installed edition (Block Lite, Standard, or Block+), the Orchestrator supports tags for all major programming languages:</p>
             <ul>
-                <li><code>&lt;py&gt; ... &lt;/py&gt;</code> - Python (requires <code>python</code> in PATH)
-                <li><code>&lt;js&gt; ... &lt;/js&gt;</code> - JavaScript (requires <code>node</code> in PATH)
-                <li><code>&lt;php&gt; ... &lt;/php&gt;</code> - PHP</li>
-                <li><code>&lt;cpp&gt; ... &lt;/cpp&gt;</code> - C++ (requires GCC / G++)
-                <li><code>&lt;go&gt; ... &lt;/go&gt;</code> - Go</li>
+                <li><code>&lt;python&gt;</code> / <code>&lt;py&gt;</code> - Python 3 (built-in in Lite, Standard, Plus)</li>
+                <li><code>&lt;js&gt;</code> - JavaScript / Node.js (built-in in Lite, Standard, Plus)</li>
+                <li><code>&lt;html&gt;</code> - HTML5 & Template Engine (built-in in Lite, Standard, Plus)</li>
+                <li><code>&lt;php&gt;</code> - PHP 8</li>
+                <li><code>&lt;lua&gt;</code> - Lua 5.4</li>
+                <li><code>&lt;sqlite&gt;</code> - SQLite 3</li>
+                <li><code>&lt;rust&gt;</code> - Rust & Cargo <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;zig&gt;</code> - Zig Compiler <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;perl&gt;</code> - Perl 5 / Strawberry Perl <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;go&gt;</code> - Go Compiler <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;cpp&gt;</code> - C / C++ <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;ps&gt;</code> - PowerShell 7 <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;r&gt;</code> - R Project <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;dart&gt;</code> - Dart SDK <em>(Block+ Flagship Only)</em></li>
+                <li><code>&lt;java&gt;</code> - Java OpenJDK <em>(Block+ Flagship Only)</em></li>
             </ul>
+
+            <p><em>Auto-Installation: In Block+, if a tag requires a runtime that is not installed on your system (such as Rust or Perl), the engine automatically invokes Windows Winget with silent flags to download and register it without interrupting your workflow.</em></p>
             
             <h2>Automatic State Sharing</h2>
             <p>When execution enters a language block, the Orchestrator automatically injects all native variables into that language's execution context. When the block finishes, any modifications made to those variables are captured and synced back to the global state.</p>

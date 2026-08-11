@@ -72,14 +72,31 @@
             <h2>Verifying the Installation</h2>
             <p>To verify that Block is installed correctly, open a new Command Prompt or PowerShell and type:</p>
             <pre><code>block --version</code></pre>
-            <p>You should see an output similar to <code>Block Orchestrator v1.0.0</code>.</p>
+            <p>You should see an output showing your installed engine edition, for example: <code>Block Language Engine v2.0.0 (Standard Edition)</code>.</p>
+
+            <h2>CLI Commands & Flags Reference</h2>
+            <ul>
+                <li><code>block [script.blk]</code> — Executes a Block script file.</li>
+                <li><code>block --version</code> / <code>-v</code> — Displays version and edition details.</li>
+                <li><code>block --help</code> / <code>-h</code> — Displays usage information and the ASCII logo.</li>
+                <li><code>block serve [port]</code> — Starts the built-in HTTP Web & API Server.</li>
+                <li><code>block config</code> — Opens the interactive settings CLI.</li>
+                <li><code>block-plus fmt [script]</code> — <em>(Block+ Only)</em> Formats polyglot code blocks.</li>
+                <li><code>block-plus check [script]</code> — <em>(Block+ Only)</em> Runs cross-language static analysis.</li>
+            </ul>
 
             <h2>Writing your first Block script</h2>
-            <p>Create a new file named <code>hello.blk</code> and add the following native syntax:</p>
-            <pre><code>print("Hello, Polyglot World!")</code></pre>
+            <p>Create a new file named <code>hello.blk</code> and add the following polyglot code:</p>
+            <pre><code>&lt;py&gt;
+msg = "Hello from Python!"
+&lt;/py&gt;
+
+&lt;js&gt;
+console.log(msg); // Shared state
+&lt;/js&gt;</code></pre>
             
             <p>Run the script using the CLI:</p>
-            <pre><code>block run hello.blk</code></pre>
+            <pre><code>block hello.blk</code></pre>
             
             <p>In the next section, we will explore the syntax of the native Block language.</p>
 
