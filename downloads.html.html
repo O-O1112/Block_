@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - Block Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dl-section { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding: 40px; }
+        .dl-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; width: 300px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .dl-card h3 { color: #fff; margin-bottom: 10px; }
+        .dl-card p { color: #aaa; margin-bottom: 20px; font-size: 0.9em; }
+        .dl-card a { display: inline-block; padding: 10px 20px; background: #fff; color: #000; text-decoration: none; border-radius: 6px; font-weight: bold; transition: all 0.2s; }
+        .dl-card a:hover { background: #ccc; }
+    </style>
+</head>
+<body>
+    <!-- 3D Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <nav class="navbar">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
+            <svg viewBox="0 0 100 100" class="logo-img-small">
+                <g fill="#ffffff">
+                    <rect x="25" y="20" width="15" height="60" />
+                    <polygon points="45,20 70,20 75,32.5 70,45 45,45" />
+                    <polygon points="45,55 75,55 80,67.5 75,80 45,80" />
+                </g>
+            </svg>
+            <span class="logo-text">BLOCK</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="wiki.html">Documentation</a>
+        </div>
+    </nav>
+
+    <main style="padding-top: 100px; text-align: center;">
+        <h1 style="color: #fff; margin-bottom: 10px;">Downloads</h1>
+        <p style="color: #aaa;">Choose what you want to install.</p>
+
+        <div class="dl-section">
+            <div class="dl-card">
+                <h3>Block Engine Installer</h3>
+                <p>The core engine & orchestrator for Windows. Includes the C# router and environment downloader.</p>
+                <a href="BlockSetup.exe" download>Download (.exe)</a>
+            </div>
+            <div class="dl-card">
+                <h3>Acode Plugin</h3>
+                <p>Mobile IDE integration. Allows writing code on your phone and executing it remotely on your PC.</p>
+                <a href="acode-plugin-block.zip" download>Download (.zip)</a>
+            </div>
+            <div class="dl-card">
+                <h3>VS Code Extension</h3>
+                <p>Syntax highlighting, snippets, and integrated terminal execution for Visual Studio Code.</p>
+                <a href="block-language-1.0.0.vsix" download>Download (.vsix)</a>
+            </div>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
