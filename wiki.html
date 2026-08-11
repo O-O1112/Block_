@@ -65,6 +65,36 @@
                 <li><strong>No Virtual Machine</strong>: Block doesn't emulate execution. It routes AST nodes to native interpreters (like <code>python.exe</code> or <code>node.exe</code>), ensuring 100% standard library compatibility and zero VM overhead.</li>
             </ul>
 
+            <h2>Engine Editions Comparison</h2>
+            <div style="margin-top: 15px; margin-bottom: 25px;">
+                <table style="width:100%; border-collapse: collapse; text-align: left; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);">
+                            <th style="padding: 12px;">Edition</th>
+                            <th style="padding: 12px;">Supported Runtimes</th>
+                            <th style="padding: 12px;">Key Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 12px; font-weight: bold; color: #60a5fa;">Block Lite</td>
+                            <td style="padding: 12px;">Python, JavaScript, HTML</td>
+                            <td style="padding: 12px;">Lightweight & zero-config. Designed for web apps and fast scripting.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 12px; font-weight: bold; color: #34d399;">Block Standard</td>
+                            <td style="padding: 12px;">Python, JS, PHP, Lua, SQLite</td>
+                            <td style="padding: 12px;">Standard polyglot engine with full dynamic state propagation.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; font-weight: bold; color: #c084fc;">Block+ (Flagship)</td>
+                            <td style="padding: 12px;">Rust, Zig, Perl, Go, C++, SQLite, Lua, PHP, PowerShell & 15+ more</td>
+                            <td style="padding: 12px;">Flagship advanced runtimes, Zero-IO state injection, and Winget auto-installer.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="wiki-nav-buttons">
                 <div></div>
                 <a href="wiki-install.html">Next: Installation &rarr;</a>

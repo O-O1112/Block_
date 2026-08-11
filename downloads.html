@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,13 @@
         .dl-section { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding: 40px; }
         .dl-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; width: 300px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
         .dl-card h3 { color: #fff; margin-bottom: 10px; }
-        .dl-card p { color: #aaa; margin-bottom: 20px; font-size: 0.9em; }
+        .dl-card p { color: #aaa; margin-bottom: 20px; font-size: 0.9em; line-height: 1.5; }
         .dl-card a { display: inline-block; padding: 10px 20px; background: #fff; color: #000; text-decoration: none; border-radius: 6px; font-weight: bold; transition: all 0.2s; }
         .dl-card a:hover { background: #ccc; }
+        .badge-tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-bottom: 10px; }
+        .tag-lite { background: #3b82f6; color: white; }
+        .tag-std { background: #10b981; color: white; }
+        .tag-plus { background: #8b5cf6; color: white; }
     </style>
 </head>
 <body>
@@ -36,23 +40,45 @@
     </nav>
 
     <main style="padding-top: 100px; text-align: center;">
-        <h1 style="color: #fff; margin-bottom: 10px;">Downloads</h1>
-        <p style="color: #aaa;">Choose what you want to install.</p>
+        <h1 style="color: #fff; margin-bottom: 10px;">Downloads & Edition Guide</h1>
+        <p style="color: #aaa; max-width: 600px; margin: 0 auto 30px auto;">Choose the right edition of Block Engine for your development environment.</p>
 
         <div class="dl-section">
+            <!-- Block Lite -->
             <div class="dl-card">
-                <h3>Block Engine Installer</h3>
-                <p>The core engine & orchestrator for Windows. Includes the C# router and environment downloader.</p>
+                <span class="badge-tag tag-lite">LITE</span>
+                <h3>Block Lite</h3>
+                <p>Lightweight edition with built-in Python, JavaScript, and HTML. Zero configuration needed, perfect for web apps and scripts.</p>
+                <a href="block-lite.zip" download>Download (.zip)</a>
+            </div>
+
+            <!-- Block Standard -->
+            <div class="dl-card">
+                <span class="badge-tag tag-std">STANDARD</span>
+                <h3>Block Standard</h3>
+                <p>Standard edition with cross-language state sharing. Supports Python, JS, PHP, Lua, and SQLite seamlessly.</p>
+                <a href="block.zip" download>Download (.zip)</a>
+            </div>
+
+            <!-- Block+ -->
+            <div class="dl-card" style="border-color: rgba(139,92,246,0.4);">
+                <span class="badge-tag tag-plus">PRO / PLUS</span>
+                <h3>Block+ (Flagship)</h3>
+                <p>Flagship edition unlocking 15+ advanced runtimes (Rust, Zig, Perl, Go, C++, etc.), Zero-IO variable injection, and Winget auto-installer.</p>
+                <a href="block-plus.zip" download style="background:#8b5cf6; color:white;">Download (.zip)</a>
+            </div>
+        </div>
+
+        <h2 style="color: #fff; margin-top: 40px; margin-bottom: 10px;">Tools & Integrations</h2>
+        <div class="dl-section">
+            <div class="dl-card">
+                <h3>Block GUI Setup</h3>
+                <p>All-in-one Windows GUI installer. One-click environment setup and PATH variable registration.</p>
                 <a href="BlockSetup.exe" download>Download (.exe)</a>
             </div>
             <div class="dl-card">
-                <h3>Acode Plugin</h3>
-                <p>Mobile IDE integration. Allows writing code on your phone and executing it remotely on your PC.</p>
-                <a href="acode-plugin-block.zip" download>Download (.zip)</a>
-            </div>
-            <div class="dl-card">
                 <h3>VS Code Extension</h3>
-                <p>Syntax highlighting, snippets, and integrated terminal execution for Visual Studio Code.</p>
+                <p>Syntax highlighting, code snippets, and integrated execution support for Visual Studio Code.</p>
                 <a href="block-language-1.0.0.vsix" download>Download (.vsix)</a>
             </div>
         </div>
